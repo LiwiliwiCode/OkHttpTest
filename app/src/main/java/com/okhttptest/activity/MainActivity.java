@@ -22,7 +22,7 @@ import com.okhttptest.R;
 import com.okhttptest.fragment.SoonShowFragment;
 import com.okhttptest.fragment.UserFragment;
 import com.okhttptest.fragment.WellReceivedFragment;
-import com.okhttptest.view.BadgeIntentService;
+import com.okhttptest.service.BadgeIntentService;
 
 import java.util.ArrayList;
 import java.util.List;
