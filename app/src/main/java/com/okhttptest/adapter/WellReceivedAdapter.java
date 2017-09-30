@@ -1,4 +1,4 @@
-package com.okhttptest.view;
+package com.okhttptest.adapter;
 
 import android.content.Context;
 import android.net.Uri;
@@ -16,6 +16,7 @@ import com.facebook.imagepipeline.request.ImageRequest;
 import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.okhttptest.R;
 import com.okhttptest.bean.WellRecevicebean;
+import com.okhttptest.view.ReceivedAdapterCallback;
 
 import java.util.List;
 
@@ -31,9 +32,6 @@ public class WellReceivedAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     private List<WellRecevicebean.MsBean> mInfo = null;
     private ReceivedAdapterCallback mReceivedAdapterCallback = null;
 
-    public interface ReceivedAdapterCallback{
-        void Refrensh();
-    }
 
     public WellReceivedAdapter(Context context,ReceivedAdapterCallback listener){
         mContext = context;

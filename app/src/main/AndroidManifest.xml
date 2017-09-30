@@ -114,7 +114,7 @@
         </activity-alias>
 
         <service
-            android:name=".view.BadgeIntentService"
+            android:name=".service.BadgeIntentService"
             android:exported="false"></service>
 
         <meta-data android:name="Mob-AppKey" android:value="2155d6f9793b0"/>

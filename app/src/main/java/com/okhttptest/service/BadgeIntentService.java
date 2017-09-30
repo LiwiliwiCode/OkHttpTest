@@ -1,4 +1,4 @@
-package com.okhttptest.view;
+package com.okhttptest.service;
 
 import android.app.IntentService;
 import android.app.Notification;

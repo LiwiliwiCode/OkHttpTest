@@ -1,4 +1,4 @@
-package com.okhttptest.view;
+package com.okhttptest.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
