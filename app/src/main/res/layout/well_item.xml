@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    >
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        fresco:viewAspectRatio="1.33"
+        fresco:failureImage="@mipmap/logo128"
+        fresco:failureImageScaleType="centerInside"
+        android:layout_width="100dp"
+        android:id="@+id/flim_Imageview"
+        fresco:placeholderImage="@mipmap/logo128"
+        fresco:actualImageScaleType="focusCrop"
+        android:layout_height="140dp"/>
+
+    <TextView
+        android:id="@+id/flim_Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lines="1"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/flim_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/flim_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="3dp"
+        android:text="TextView" />
+
+</LinearLayout>

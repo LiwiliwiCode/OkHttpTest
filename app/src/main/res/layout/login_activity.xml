@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimaryDark"
+        android:gravity="center"
+        android:text="@string/login"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+       />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="国家和地区"
+        android:textColor="@android:color/black"
+        android:layout_marginLeft="10dp"
+
+        android:textSize="18sp"
+        android:layout_alignBaseline="@+id/textView6"
+        android:layout_alignBottom="@+id/textView6"
+        android:layout_alignLeft="@+id/textView7"
+        android:layout_alignStart="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:text="中国"
+        android:textColor="@android:color/holo_green_light"
+        android:textSize="18sp"
+        android:layout_below="@+id/tv_title"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="31dp" />
+
+    <EditText
+        android:id="@+id/login_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="37dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="请填写手机电话号码"
+        android:inputType="phone"
+        android:layout_below="@+id/textView6"
+        android:layout_toRightOf="@+id/textView7"
+        android:layout_toEndOf="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="+86"
+        android:layout_marginLeft="10dp"
+        android:gravity="center"
+        android:textColor="@android:color/background_dark"
+        android:textSize="18sp"
+        android:layout_alignTop="@+id/login_phone"
+        android:layout_alignBottom="@+id/login_phone" />
+
+    <Button
+        android:id="@+id/buttonnext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_green_light"
+        android:onClick="login"
+        android:layout_marginTop="10dp"
+        android:text="登录"
+        android:textColor="@color/colorwihte"
+        android:textSize="18sp"
+        android:layout_below="@+id/login_code"
+        android:layout_alignLeft="@+id/login_code"
+        android:layout_alignStart="@+id/login_code"
+        android:layout_alignRight="@+id/login_obtaincodebt"
+        android:layout_alignEnd="@+id/login_obtaincodebt" />
+
+    <EditText
+        android:id="@+id/login_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="输入验证码"
+        android:layout_marginTop="10dp"
+        android:inputType="number"
+        android:gravity="center"
+        android:layout_below="@+id/login_obtaincodebt"
+        android:layout_alignLeft="@+id/textView7"
+        android:layout_alignStart="@+id/textView7"
+        android:layout_alignRight="@+id/login_obtaincodebt"
+        android:layout_alignEnd="@+id/login_obtaincodebt" />
+
+
+    <Button
+        android:id="@+id/login_obtaincodebt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_green_light"
+        android:onClick="obtainCode"
+        android:text="获取验证码"
+        android:textColor="@color/colorwihte"
+        android:layout_alignBaseline="@+id/textView7"
+        android:layout_alignBottom="@+id/textView7"
+        android:layout_toRightOf="@+id/login_phone"
+        android:layout_alignRight="@+id/textView6"
+        android:layout_alignEnd="@+id/textView6" />
+
+
+
+</RelativeLayout>

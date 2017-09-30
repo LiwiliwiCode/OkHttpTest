@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
+    android:layout_marginLeft="5dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+   >
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/flim_yanyuan_icon"
+        android:layout_width="60dp"
+        android:layout_height="100dp" />
+
+    <TextView
+        android:id="@+id/flim_yanyuan_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryDark"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/flim_yanyuan_roleName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryDark"
+        android:text="TextView" />
+
+
+</LinearLayout>

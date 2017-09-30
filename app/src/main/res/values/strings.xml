@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">OkHttpTest</string>
+    <string name="title_home">正在热映</string>
+    <string name="title_dashboard">即将上映</string>
+    <string name="title_ticket">正在售票</string>
+    <string name="title_notifications">我的</string>
+    <string name="home_str">okhttp测试demo version 1.0</string>
+    <string name="login">注 册</string>
+    <string name="drawer_menu_m">正常</string>
+    <string name="drawer_menu_11">双11</string>
+    <string name="drawer_menu_12">双12</string>
+    <string name="drawer_menu_88">8.8</string>
+
+</resources>
