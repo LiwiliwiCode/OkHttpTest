@@ -14,6 +14,7 @@ import com.okhttptest.Util.DialogUtil;
 /**
  * Fragment基类，咨询、活动、我的均在这继承
  * Created by hhmsw on 2017/9/19.
+ *
  */
 
 public abstract class BaseFragment extends Fragment {
