@@ -20,6 +20,8 @@ public class OkHtttpApp extends MobApplication {
         //初始化
         Fresco.initialize(this, ImagePipelineConfigFactory.getImagePipelineConfig(context));
         MobSDK.init(context, "2155d6f9793b0", "d79f2d9912a3ac57184a4a17f0926876");
+
+
     }
 
     public static Context getContext(){

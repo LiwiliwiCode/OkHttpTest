@@ -39,7 +39,7 @@ public class LruJsonCache {
             if(!file.exists()){
                 file.mkdirs();
             }
-            mDiskruCache = DiskLruCache.open(file,getAppVersion(),1,20 * 1024 * 1024);
+            mDiskruCache = DiskLruCache.open(file,getAppVersion(),1,CHCHEMAX);
         } catch (IOException e) {
             e.printStackTrace();
         }

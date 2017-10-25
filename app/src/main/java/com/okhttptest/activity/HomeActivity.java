@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.widget.ImageView;
 
 import com.okhttptest.R;
 import com.okhttptest.Util.LoginUtil;
@@ -21,7 +22,7 @@ public class HomeActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_layout);
-
+        ImageView i;
 
         /**
          * 3秒之后进入主界面

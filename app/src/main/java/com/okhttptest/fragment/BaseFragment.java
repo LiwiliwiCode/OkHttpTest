@@ -26,6 +26,8 @@ public abstract class BaseFragment extends Fragment {
         if(!ConnectedUtil.isMobileConnected()){
             DialogUtil.getIns().Tip(getActivity(),"请检查网络");
         }
+       getFragmentManager().registerFragmentLifecycleCallbacks(new FragmentManager.FragmentLifecycleCallbacks() {
+       });
 
         getDate();
     }

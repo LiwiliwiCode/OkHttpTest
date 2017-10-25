@@ -21,10 +21,11 @@ import com.okhttptest.Util.NetUtil;
 import com.okhttptest.Util.Tools;
 import com.okhttptest.activity.LoginActivity;
 import com.okhttptest.activity.SoonFlimDetailsActivity;
+import com.okhttptest.adapter.SoonReceivedAdapter;
 import com.okhttptest.bean.FlimShow;
 import com.okhttptest.bean.MoviecomingsBean;
 import com.okhttptest.view.BaseRecyclerView;
-import com.okhttptest.view.SoonReceivedAdapter;
+import com.okhttptest.view.ReceivedAdapterCallback;
 
 import java.io.IOException;
 
@@ -50,7 +51,7 @@ public class SoonShowFragment extends BaseFragment {
         mEmtryView = (LinearLayout)view.findViewById(R.id.empty_view);
         mRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 3));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerAdapter = new SoonReceivedAdapter(getActivity(), new SoonReceivedAdapter.ReceivedAdapterCallback() {
+        mRecyclerAdapter = new SoonReceivedAdapter(getActivity(), new ReceivedAdapterCallback() {
             @Override
             public void Refrensh() {
                 getActivity().runOnUiThread(new Runnable() {

@@ -20,9 +20,10 @@ import com.okhttptest.Util.NetUtil;
 import com.okhttptest.Util.Tools;
 import com.okhttptest.activity.FlimDetailsActivity;
 import com.okhttptest.activity.LoginActivity;
+import com.okhttptest.adapter.WellReceivedAdapter;
 import com.okhttptest.bean.WellRecevicebean;
 import com.okhttptest.view.BaseRecyclerView;
-import com.okhttptest.view.WellReceivedAdapter;
+import com.okhttptest.view.ReceivedAdapterCallback;
 
 import java.io.IOException;
 
@@ -48,7 +49,7 @@ public class WellReceivedFragment extends BaseFragment {
         mEmtryView = (LinearLayout)view.findViewById(R.id.empty_view);
         mRecyclerView.setLayoutManager(new GridLayoutManager(mContext, 3));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerAdapter = new WellReceivedAdapter(getActivity(), new WellReceivedAdapter.ReceivedAdapterCallback() {
+        mRecyclerAdapter = new WellReceivedAdapter(getActivity(), new ReceivedAdapterCallback() {
             @Override
             public void Refrensh() {
                 getActivity().runOnUiThread(new Runnable() {

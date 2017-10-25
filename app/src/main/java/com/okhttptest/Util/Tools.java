@@ -64,9 +64,9 @@ public class Tools {
 
     /**
      * 影片评论
-     url：https://ticket-api-m.mtime.cn/movie/hotComment.api?movieId=?
+     url：https://ticket-api-m.mtime.cn/movie/hotComment.api?movieId=239556
      */
-
+    public static String HOTCOMMENT_URL = "https://ticket-api-m.mtime.cn/movie/hotComment.api?";
     /**
      * 预告片&拍摄花絮
      url：https://api-m.mtime.cn/Movie/Video.api?pageIndex=?&movieId=?

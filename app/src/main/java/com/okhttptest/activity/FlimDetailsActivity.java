@@ -28,7 +28,9 @@ import com.okhttptest.Util.DialogUtil;
 import com.okhttptest.Util.LogUtils;
 import com.okhttptest.Util.NetUtil;
 import com.okhttptest.Util.Tools;
+import com.okhttptest.bean.Commentbean;
 import com.okhttptest.bean.Flimbean;
+import com.okhttptest.listener.CommentListener;
 
 import java.io.IOException;
 import java.util.List;
@@ -63,19 +65,34 @@ public class FlimDetailsActivity extends FragmentActivity {
     private SimpleDraweeView video_image;
     private Button video_image_play;
     private NestedScrollView nestedScrollview;
-
+    private LinearLayout comment;
 
     Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            if(msg.obj != null){
-                DialogUtil.getIns().hideLoadingDialog();
-                Flimbean bean = (Flimbean) msg.obj;
-                BindViewsFromData(bean);
+
+            if(msg == null)
+                return;
+
+            if(msg.what == COMMENT){
+                if(msg.obj != null){
+                    Commentbean bean = (Commentbean) msg.obj;
+                    getCommentView(bean);
+                }
+
+            }else{
+                if(msg.obj != null){
+                    DialogUtil.getIns().hideLoadingDialog();
+                    Flimbean bean = (Flimbean) msg.obj;
+                    BindViewsFromData(bean);
+                }
             }
+
         }
     };
+    private int COMMENT = 123;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -90,11 +107,16 @@ public class FlimDetailsActivity extends FragmentActivity {
              locationId = intent.getStringExtra("locationId");
 
             Log.e(TAG,movedId+"");
-             getDate();
+            getDate(new CommentListener(){
+
+                @Override
+                public void load() {
+                    getComment();
+                }
+            });
+//
         }
     }
-
-
 
     private void initViews() {
 
@@ -114,6 +136,8 @@ public class FlimDetailsActivity extends FragmentActivity {
          video_image =(SimpleDraweeView)findViewById(R.id.video_image);
          video_image_play=(Button)findViewById(R.id.video_image_play);
          nestedScrollview = (NestedScrollView)findViewById(R.id.flim_desc_nestedScrollview);
+         comment = (LinearLayout) findViewById(R.id.comment);
+
 
          video_image_play.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,11 +158,25 @@ public class FlimDetailsActivity extends FragmentActivity {
         mSwipe.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                getDate();
+                getDate(new CommentListener() {
+                    @Override
+                    public void load() {
+                        getComment();
+                    }
+                });
                 mSwipe.setRefreshing(false);
             }
         });
+        nestedScrollview.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                if (scrollY == (v.getChildAt(0).getMeasuredHeight() - v.getMeasuredHeight())) {
+                    Log.i(TAG, "BOTTOM SCROLL");
+//                    getComment();
+                }
 
+            }
+        });
 
         nestedScrollview.getViewTreeObserver().addOnScrollChangedListener(new  ViewTreeObserver.OnScrollChangedListener() {
             @Override
@@ -150,9 +188,9 @@ public class FlimDetailsActivity extends FragmentActivity {
 
     /**
      * 获取数据
+     * @param commentListener
      */
-    private void getDate(){
-
+    private void getDate(final CommentListener commentListener){
 
                 if(ConnectedUtil.isNetworkConnected()){
                     DialogUtil.getIns().showLoadingDialog(this);
@@ -183,9 +221,10 @@ public class FlimDetailsActivity extends FragmentActivity {
                                     Message msg = Message.obtain();
                                     msg.obj = flimbean;
                                     handler.sendMessageDelayed(msg,1500);
-
+                                    commentListener.load();
                             }
                         });
+
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -276,6 +315,75 @@ public class FlimDetailsActivity extends FragmentActivity {
             name.setText(actor.getName());
             roleName.setText(actor.getRoleName());
             yanyuan_content.addView(view);
+        }
+    }
+
+    /**
+     * 评论
+     */
+    private void getComment(){
+        if(ConnectedUtil.isNetworkConnected()){
+            RequestBody body = new FormBody.Builder().add("movieId",movedId).build();
+            try {
+                NetUtil.getInstance().post(Tools.HOTCOMMENT_URL, body, new NetUtil.NetCallback() {
+                    @Override
+                    public void Fail() {
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                DialogUtil.getIns().Tip(FlimDetailsActivity.this,"请检查当前网络");
+
+                            }
+                        });
+
+                    }
+
+                    @Override
+                    public void Success(String json) {
+                        LogUtils.LogE(TAG,"getComment=="+json);
+
+                        Commentbean bean = new Gson().fromJson(json,Commentbean.class);
+                        if(bean != null){
+                            Message msg = Message.obtain();
+                            msg.what = COMMENT;
+                            msg.obj = bean;
+                            handler.sendMessageDelayed(msg,500);
+                        }
+
+                    }
+                });
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * 显示评价
+     * @param bean
+     */
+    private void getCommentView( Commentbean bean) {
+        if(comment.getChildCount() > 0)
+        comment.removeAllViews();
+
+        List<Commentbean.DataBean.MiniBean.ListBean> lists =  bean.getData().getMini().getList();
+        int Size = lists.size();
+        if(Size > 0){
+            for (int i = 0; i < Size; i++) {
+                Commentbean.DataBean.MiniBean.ListBean mini = lists.get(i);
+
+                View view = getLayoutInflater().inflate(R.layout.comment_item,null,false);
+//                view.setPadding(0,0,0,15);
+                SimpleDraweeView icon = (SimpleDraweeView)view.findViewById(R.id.comment_usericon);
+                TextView name = (TextView)view.findViewById(R.id.comment_name);
+                TextView content = (TextView)view.findViewById(R.id.comment_content);
+                icon.setImageURI(mini.getHeadImg());
+                name.setText(mini.getNickname());
+                content.setText(mini.getContent());
+                comment.addView(view);
+            }
         }
 
     }
