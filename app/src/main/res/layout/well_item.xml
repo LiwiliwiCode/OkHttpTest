@@ -10,11 +10,11 @@
 
     <com.facebook.drawee.view.SimpleDraweeView
         fresco:viewAspectRatio="1.33"
-        fresco:failureImage="@mipmap/logo128"
+        fresco:failureImage="@mipmap/logo"
         fresco:failureImageScaleType="centerInside"
         android:layout_width="100dp"
         android:id="@+id/flim_Imageview"
-        fresco:placeholderImage="@mipmap/logo128"
+        fresco:placeholderImage="@mipmap/logo"
         fresco:actualImageScaleType="focusCrop"
         android:layout_height="140dp"/>
 
